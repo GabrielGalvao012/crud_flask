@@ -1,0 +1,27 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<form method="post" action="/adicionar">
+    <fieldset>
+
+        <div class="mb-3">
+            <label for="txtNome">Nome do Cliente:</label>
+            <input type="text" name="txtNome" id="txtNome" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="txtEmail">Email do Cliente:</label>
+            <input type="text" name="txtEmail" id="txtEmail" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="txtTelefone">Telefone do Cliente</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

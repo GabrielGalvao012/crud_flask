@@ -1,0 +1,23 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nome_cliente }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{cliente.telefone}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
