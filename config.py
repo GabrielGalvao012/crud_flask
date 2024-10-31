@@ -1,3 +1,5 @@
+import os
+
 SECRET_KEY = 'apredendocodigoflask'
 
 SQLALCHEMY_DATABASE_URI = \
@@ -8,3 +10,5 @@ SQLALCHEMY_DATABASE_URI = \
         servidor = 'localhost',
         database = 'cliente'
     )
+    
+UPLOAD_PASTA = os.path.dirname(os.path.abspath(__file__)) + '/uploads'

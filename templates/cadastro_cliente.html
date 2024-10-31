@@ -1,8 +1,15 @@
 {% extends "template.html" %}
 
 {% block conteudo %}
-<form method="post" action="/adicionar">
+<form method="post" action="/adicionar" enctype="multipart/form-data">
     <fieldset>
+
+        <div class="mb-3">
+            <label for="arquivo" class="form-label">
+                Selecione a logo do cliente
+            </label>
+            <input type="file" id="arquivo" class="form-control" name="arquivo" accept=".jpg, .jpeg, .png">
+        </div>
 
         <div class="mb-3">
             <label for="txtNome">Nome do Cliente:</label>

@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<form method="post" action="{{  url_for('atualizar') }}">
+    <fieldset>
+
+        <div class="mb-3">
+            <img src="{{ url_for('imagem', nome_imagem=album_cliente) }}">
+        </div>
+
+        <div class="mb-3">
+            
+            <label for="arquivo" class="form-label">Selecione uma nova imagem</label>
+            <input type="file" name="arquivo" id="arquivo"
+            accept=".jpg, .jpeg, .png" class="form-control">
+        </div>
+
+        <input type="hidden" name="txtId" value="{{ cliente.id_cliente }}">
+
+        <div class="mb-3">
+            <label for="txtNome">Nome do Cliente:</label>
+            <input type="text" name="txtNome" id="txtNome" class="form-control" value="{{ cliente.nome_cliente }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="txtEmail">Email do Cliente:</label>
+            <input type="text" name="txtEmail" id="txtEmail" class="form-control" value="{{ cliente.email }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="txtTelefone">Telefone do Cliente</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" class="form-control" value="{{ cliente.telefone }}">
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

@@ -1,6 +1,7 @@
-from flask import render_template, request, redirect, session, flash, url_for
-from models import Cliente, Usuario
+from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from cliente import db, app
+from models import Cliente, Usuario
+from definicoes import recupera_imagem
 
 @app.route('/')
 def listarClientes():
@@ -37,7 +38,64 @@ def adicionar_cliente():
     
     db.session.add(novo_cliente)
     db.session.commit()
+    
+    arquivo = request.files['arquivo']
+    
+    pasta_arquivos = app.config['UPLOAD_PASTA']
+    
+    nome_arquivo = arquivo.filename
+    
+    nome_arquivo = nome_arquivo.split('.')
+    
+    extensao = nome_arquivo[len(nome_arquivo)-1]
+    
+    nome_completo = f'album{novo_cliente.id_cliente}.{extensao}'
+    
+    arquivo.save(f'{pasta_arquivos}/{nome_completo}')
 
+    return redirect(url_for('listarClientes'))
+
+@app.route('/editar/<int:id>')
+def editar(id):
+    
+    if session['usuario_logado'] == None or 'usuario_logado' not in session:
+        return redirect(url_for('login'))
+    
+    clienteBuscado = Cliente.query.filter_by(id_cliente=id).first()
+    
+    album = recupera_imagem(id)
+    
+    return render_template('editar_cliente.html', 
+                           titulo = 'Editar cliente',
+                           cliente = clienteBuscado,
+                           album_cliente = album)
+    
+
+@app.route('/atualizar', methods=['POST',])
+def atualizar():
+    
+    cliente = Cliente.query.filter_by(id_cliente=request.form['txtId']).first()
+    
+    cliente.nome_cliente = request.form['txtNome']
+    cliente.email = request.form['txtEmail']
+    cliente.telefone = request.form['txtTelefone']
+    
+    db.session.add(cliente)
+    db.session.commit()
+    
+    return redirect(url_for('listarClientes'))
+
+@app.route('/excluir/<int:id>')
+def excluir(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login'))
+    
+    Cliente.query.filter_by(id_cliente=id).delete()
+    
+    db.session.commit()
+    
+    flash("Cliente excluida com sucesso")
+    
     return redirect(url_for('listarClientes'))
 
 @app.route('/login')
@@ -65,3 +123,7 @@ def autenticar():
 def sair():
     session['usuario_logado'] = None
     return redirect(url_for('login'))
+
+@app.route('/uploads/<nome_imagem>')
+def imagem(nome_imagem):
+    return send_from_directory('uploads', nome_imagem)
