@@ -4,6 +4,8 @@
 <form method="post" action="/adicionar" enctype="multipart/form-data">
     <fieldset>
 
+        {{ form.csrf_token() }}
+
         <div class="mb-3">
             <label for="arquivo" class="form-label">
                 Selecione a logo do cliente
@@ -12,22 +14,22 @@
         </div>
 
         <div class="mb-3">
-            <label for="txtNome">Nome do Cliente:</label>
-            <input type="text" name="txtNome" id="txtNome" class="form-control">
+            {{ form.nome.label(class="form-label") }}
+            {{ form.nome(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            <label for="txtEmail">Email do Cliente:</label>
-            <input type="text" name="txtEmail" id="txtEmail" class="form-control">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            <label for="txtTelefone">Telefone do Cliente</label>
-            <input type="text" name="txtTelefone" id="txtTelefone" class="form-control">
+            {{ form.telefone.label(class="form-label") }}
+            {{ form.telefone(class="form-control") }}
         </div>
 
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Cadastrar Cliente</button>
+            {{ form.cadastrar(class="btn btn-primary") }}
         </div>
     </fieldset>
 </form>
