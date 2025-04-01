@@ -21,7 +21,10 @@
     </div>
 
     <div class="mb-3">
-        {{ form.cadastrar(class="btn btn-primary") }}
+        {{ form.cadastrar(class="btn btn-primary me-2") }}
+        <a href="{{ url_for('listarClientes') }}" class="btn btn-secondary">
+            Cancelar
+        </a>
     </div>
 </form>
 

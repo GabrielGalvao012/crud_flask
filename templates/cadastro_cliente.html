@@ -27,9 +27,12 @@
             {{ form.telefone.label(class="form-label") }}
             {{ form.telefone(class="form-control") }}
         </div>
-
-        <div class="mb-3">
-            {{ form.cadastrar(class="btn btn-primary") }}
+    
+       <div class="mb-3">
+            {{ form.cadastrar(class="btn btn-primary me-2") }}
+            <a href="{{ url_for('listarClientes') }}" class="btn btn-secondary">
+                Cancelar
+            </a>
         </div>
     </fieldset>
 </form>

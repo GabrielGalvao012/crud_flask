@@ -4,10 +4,10 @@
 <form method="post" action="{{  url_for('atualizar') }}" enctype="multipart/form-data">
     <fieldset>
 
-        <figure class="img-thmbnail mb-3">
+        <figure class="img-thmbnail mb-3" style="max-width: 300px; border: 1px solid #000; margin: 0 auto;">
             <img class="img-fluid" src="{{ url_for('imagem', nome_imagem=album_cliente) }}">
 
-
+        </figure>
             <figcaption>
                 <label for="arquivo" class="form-label">
                     Selecione uma nova imagem
@@ -15,7 +15,7 @@
                     accept=".jpg, .jpeg, .png" class="form-control">
                 </label>
             </figcaption>
-        </figure>
+        
 
         {{ cliente.csrf_token() }}
 
@@ -37,7 +37,10 @@
         </div>
 
         <div class="mb-3">
-            {{ cliente.cadastrar(class="btn btn-primary") }}
+            {{ cliente.cadastrar(class="btn btn-primary me-2") }}
+            <a href="{{ url_for('listarClientes') }}" class="btn btn-secondary">
+                Cancelar
+            </a>
         </div>
     </fieldset>
 </form>
