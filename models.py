@@ -17,3 +17,15 @@ class Usuario(db.Model):
     
     def __repr__(self):
         return '<Name %r' %self.name
+
+# Serviço novo se der erro tirar isso 
+class Servico(db.Model):
+    id_servico = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome_servico = db.Column(db.String(100), nullable=False)
+    descricao = db.Column(db.Text, nullable=True)
+    cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.id_cliente'), nullable=False)
+    # Relacionamento com o modelo Cliente:
+    cliente = db.relationship('Cliente', backref='servicos')
+
+    def __repr__(self):
+        return f"<Servico {self.nome_servico}>"

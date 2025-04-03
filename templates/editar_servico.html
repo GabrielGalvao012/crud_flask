@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<h2>Editar Serviço</h2>
+<form method="post" action="{{ url_for('editar_servico', id=servico.id_servico) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="mb-3">
+        <label for="nome_servico" class="form-label">Nome do Serviço</label>
+        <input type="text" class="form-control" id="nome_servico" name="nome_servico" value="{{ servico.nome_servico }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ servico.descricao }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="cliente_id" class="form-label">Cliente</label>
+        <select class="form-control" id="cliente_id" name="cliente_id" required>
+            <option value="">Selecione um cliente</option>
+            {% for cliente in clientes %}
+            <option value="{{ cliente.id_cliente }}" {% if cliente.id_cliente = servico.cliente_id %}selected{% endif %}>
+                {{ cliente.nome_cliente }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary me-2">Salvar</button>
+        <a href="{{ url_for('listar_servicos') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+{% endblock %}
