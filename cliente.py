@@ -16,9 +16,6 @@ from views_cliente import *
 
 from views_user import *
 
-# Servico novo
-from views_cliente import *
-from views_user import *
 from views_servicos import *
 
 

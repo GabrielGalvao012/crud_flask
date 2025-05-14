@@ -1,0 +1,44 @@
+body {
+    background: linear-gradient(to right, #b388eb, #8064e9);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.card-login {
+    background-color: #fff;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-roxo {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+    color: white;
+}
+
+.btn-roxo:hover {
+    background-color: #5936a9;
+    border-color: #5936a9;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #6f42c1;
+}
+
+h2 {
+    color: #6f42c1;
+}
+
+.marca {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 550; /* Deixa o texto mais encorpado */
+    letter-spacing: 1px; 
+}

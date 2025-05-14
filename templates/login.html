@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+
 </head>
 
 <body>
+
+    <div class="card-login">
+        <h2 class="text-center mb-3 marca">CMARKETIZE</h2>
+
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
