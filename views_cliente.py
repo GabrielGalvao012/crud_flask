@@ -141,6 +141,6 @@ def excluir(id):
     
     db.session.commit()
     
-    flash("Cliente excluida com sucesso")
+    flash("Cliente excluido (a) com sucesso")
     
     return redirect(url_for('listarClientes'))

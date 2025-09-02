@@ -14,16 +14,16 @@
         <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ servico.descricao }}</textarea>
     </div>
     <div class="mb-3">
-        <label for="cliente_id" class="form-label">Cliente</label>
-        <select class="form-control" id="cliente_id" name="cliente_id" required>
-            <option value="">Selecione um cliente</option>
-            {% for cliente in clientes %}
-            <option value="{{ cliente.id_cliente }}" {% if cliente.id_cliente = servico.cliente_id %}selected{% endif %}>
-                {{ cliente.nome_cliente }}
-            </option>
-            {% endfor %}
-        </select>
-    </div>
+    <label for="cliente_id" class="form-label">Cliente</label>
+    <select class="form-control" id="cliente_id" name="cliente_id" required>
+        <option value="">Selecione um cliente</option>
+        {% for cliente in clientes %}
+        <option value="{{ cliente.id_cliente }}" {% if cliente.id_cliente == servico.cliente_id %}selected{% endif %}>
+            {{ cliente.nome_cliente }}
+        </option>
+        {% endfor %}
+    </select>
+</div>
     <div class="mb-3">
         <button type="submit" class="btn btn-primary me-2">Salvar</button>
         <a href="{{ url_for('listar_servicos') }}" class="btn btn-secondary">Cancelar</a>

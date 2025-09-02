@@ -1,44 +1,80 @@
 body {
-    background: linear-gradient(to right, #b388eb, #8064e9);
+    background: linear-gradient(135deg, #b388eb, #8064e9);
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
 }
 
+/* Card Login */
 .card-login {
     background-color: #fff;
-    border: none;
     border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 2.5rem;
     width: 100%;
     max-width: 400px;
+    animation: fadeIn 0.6s ease-in-out;
 }
 
-.btn-roxo {
-    background-color: #6f42c1;
-    border-color: #6f42c1;
-    color: white;
+/* Título */
+h2.marca {
+    color: #6f42c1;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 1.5px;
 }
 
-.btn-roxo:hover {
-    background-color: #5936a9;
-    border-color: #5936a9;
-}
-
+/* Labels */
 .form-label {
-    font-weight: bold;
+    font-weight: 600;
     color: #6f42c1;
+    margin-bottom: 0.3rem;
+    display: block;
 }
 
-h2 {
-    color: #6f42c1;
+/* Inputs */
+.form-control {
+    border-radius: 0.6rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
 }
 
-.marca {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 550; /* Deixa o texto mais encorpado */
-    letter-spacing: 1px; 
+.form-control:focus {
+    border-color: #6f42c1;
+    box-shadow: 0 0 8px rgba(111, 66, 193, 0.3);
+}
+
+/* Botão */
+.btn-primary {
+    background: linear-gradient(45deg, #6f42c1, #a18cd1);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #5936a9, #8d72d8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.3);
+}
+
+/* Mensagens de erro */
+#messages .alert {
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
+}
+
+/* Animação ao carregar */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
