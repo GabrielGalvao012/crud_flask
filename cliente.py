@@ -18,6 +18,8 @@ from views_user import *
 
 from views_servicos import *
 
+from views_dashboard import *
+
 
 if __name__ == '__main__':
     app.run(debug=True)

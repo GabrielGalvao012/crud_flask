@@ -24,8 +24,12 @@ class Servico(db.Model):
     nome_servico = db.Column(db.String(100), nullable=False)
     descricao = db.Column(db.Text, nullable=True)
     cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.id_cliente'), nullable=False)
+    valor = db.Column(db.Float, nullable=False, default=0.0)
+    status = db.Column(db.String(20), nullable=False)
     # Relacionamento com o modelo Cliente:
     cliente = db.relationship('Cliente', backref='servicos')
+   
 
     def __repr__(self):
         return f"<Servico {self.nome_servico}>"
+    

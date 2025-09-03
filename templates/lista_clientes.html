@@ -1,6 +1,14 @@
 {% extends "template.html" %}
 
 {% block conteudo %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Clientes Cadastrados</h2>
+    <a href="{{ url_for('cadastrarClientes') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Novo Cliente
+    </a>
+</div>
+
 <table class="table table-hover">
     <thead class="table-active">
         <tr>
@@ -18,16 +26,7 @@
             <td>{{ cliente.email }}</td>
             <td>{{cliente.telefone}}</td>
             <td>
-                <label>
-                    <a href="{{ url_for('cadastrarClientes') }}" class="text-body-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path
-                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z" />
-                        </svg>
-                    </a>
-                </label>
+                
 
                 <label>
                     <a href="{{ url_for('editar', id=cliente.id_cliente) }}" class="text-body-secondary">
@@ -51,7 +50,7 @@
                     </a>
                 </label>
 
-                 <label>
+                <label>
                     <a href="{{ url_for('cadastra_usuario') }}" class="text-body-secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-plus" viewBox="0 0 16 16">

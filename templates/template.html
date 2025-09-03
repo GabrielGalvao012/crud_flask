@@ -2,13 +2,13 @@
 <html lang="pt-br">
 
 <head>
+    
     <meta charset="UTF-8">
     <title>{{ titulo }}</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='listclient.css') }}">
-
-
+    
 </head>
 
 <body>
@@ -35,16 +35,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Listagem de Clientes</a>
                     </li>
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cadastrar">Cadastrar Cliente</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cadastraUsuario">Cadastrar Usuario</a>
-                    </li>
-                    -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url_for('listar_servicos') }}">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/dashboard">Financeiro</a>
                     </li>
                     <li class="nav-item">
                        <a class="nav-link active" aria-current="page" href="/sair">Sair</a>

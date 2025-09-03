@@ -25,6 +25,8 @@ def criar_servico():
         novo_servico = Servico(
             nome_servico=request.form['nome_servico'],
             descricao=request.form.get('descricao'),
+            valor=float(request.form.get('valor', 0)),
+            status=request.form.get('status', ''),
             cliente_id=request.form['cliente_id']
         )
         db.session.add(novo_servico)
@@ -35,7 +37,6 @@ def criar_servico():
     clientes = Cliente.query.order_by(Cliente.nome_cliente).all()
     return render_template('novo_servico.html', titulo="Criar Serviço", clientes=clientes)
 
-
 @app.route('/servicos/editar/<int:id>', methods=['GET', 'POST'])
 def editar_servico(id):
     servico = Servico.query.get_or_404(id)
@@ -43,13 +44,17 @@ def editar_servico(id):
     if request.method == 'POST':
         servico.nome_servico = request.form['nome_servico']
         servico.descricao = request.form.get('descricao')
+        servico.valor = float(request.form.get('valor', 0))
+        servico.status = request.form.get('status', '')
         servico.cliente_id = request.form['cliente_id']
+
         db.session.commit()
         flash('Serviço atualizado com sucesso!')
         return redirect(url_for('listar_servicos'))
 
     clientes = Cliente.query.order_by(Cliente.nome_cliente).all()
     return render_template('editar_servico.html', servico=servico, clientes=clientes, titulo='Editar Serviço')
+
 
 
 @app.route('/servicos/excluir/<int:id>', methods=['POST'])

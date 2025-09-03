@@ -2,53 +2,47 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
-
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
 </head>
 
 <body>
+  <div class="wrapper">
+    <!-- Título -->
+    <div class="title">GerenciaC</div>
 
-    <div class="card-login">
-        <h2 class="text-center mb-3 marca">CMARKETIZE</h2>
-
-
+    <!-- Mensagens flash -->
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class="list-unstyled" id="messages">
+      {% if messages %}
+      <ul class="list-unstyled" id="messages">
         {% for message in messages %}
         <li class="alert alert-danger">{{ message }}</li>
         {% endfor %}
-    </ul>
-    {% endif %}
+      </ul>
+      {% endif %}
     {% endwith %}
 
-    <div class="container">
-        <form method="post" action="/autenticar">
-            {{ form.csrf_token() }}
+    <!-- Formulário -->
+    <form method="post" action="/autenticar">
+      {{ form.csrf_token }}
 
-            <fieldset>
+      <div class="field">
+        {{ form.usuario(class="form-control", required=True) }}
+        <label>{{ form.usuario.label.text }}</label>
+      </div>
 
-                <div class="mb-3">
-                    {{ form.usuario.label(class="form-label") }}
-                    {{ form.usuario(class="form-control") }}
-                </div>
+      <div class="field">
+        {{ form.senha(class="form-control", required=True, type="password") }}
+        <label>{{ form.senha.label.text }}</label>
+      </div>
 
-                <div class="mb-3">
-                    {{ form.senha.label(class="form-label") }}
-                    {{ form.senha(class="form-control") }}
-                </div>
-
-                <div class="mb-3">
-                    {{ form.logar(class="btn btn-primary") }}
-                </div>
-
-            </fieldset>
-
-        </form>
-    </div>
+      <div class="field">
+        {{ form.logar(class="btn btn-primary w-100") }}
+      </div>    
+    </form>
+  </div>
 </body>
 
 </html>

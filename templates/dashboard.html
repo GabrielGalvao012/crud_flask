@@ -1,0 +1,72 @@
+{% extends "template.html" %}
+
+{% block conteudo %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center fw-bold">📊 Dashboard Financeiro</h2>
+
+    <div class="row g-4">
+        <!-- Receita Total -->
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm h-100">
+                <div class="card-header">
+                    <i class="bi bi-cash-coin"></i> Receita Total
+                </div>
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <h3 class="card-title mb-0">R$ {{ "%.2f"|format(receita_total) }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receita por Cliente -->
+        <div class="col-md-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-header">
+                    <i class="bi bi-people-fill"></i> Receita por Cliente
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for cliente, valor in receita_por_cliente %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ cliente }}
+                        <span class="badge bg-primary rounded-pill">R$ {{ "%.2f"|format(valor) }}</span>
+                    </li>
+                    {% else %}
+                    <li class="list-group-item text-muted">Nenhum cliente encontrado</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Serviços por Status -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <i class="bi bi-kanban"></i> Serviços por Status
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for status, quantidade in servicos_por_status %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ status }}
+                        {% if status == "Em Andamento" %}
+                        <span class="badge bg-info rounded-pill">{{ quantidade }}</span>
+                        {% elif status == "Finalizado" %}
+                        <span class="badge bg-success rounded-pill">{{ quantidade }}</span>
+                        {% elif status == "Pago" %}
+                        <span class="badge bg-primary rounded-pill">{{ quantidade }}</span>
+                        {% elif status == "Cancelado" %}
+                        <span class="badge bg-danger rounded-pill">{{ quantidade }}</span>
+                        {% elif status == "Pendente" %}
+                        <span class="badge bg-warning text-dark rounded-pill">{{ quantidade }}</span>
+                        {% else %}
+                        <span class="badge bg-secondary rounded-pill">{{ quantidade }}</span>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

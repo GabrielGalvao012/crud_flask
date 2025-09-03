@@ -11,9 +11,7 @@ def listarClientes():
     
     lista = Cliente.query.order_by(Cliente.id_cliente)
     
-    return render_template('lista_clientes.html', 
-                           titulo='Clientes Cadastrados',
-                           clientes=lista)
+    return render_template('lista_clientes.html', clientes=lista)
 
 @app.route('/cadastrar')
 def cadastrarClientes():
@@ -141,6 +139,6 @@ def excluir(id):
     
     db.session.commit()
     
-    flash("Cliente excluido (a) com sucesso")
+    flash("Cliente excluido com sucesso")
     
     return redirect(url_for('listarClientes'))
