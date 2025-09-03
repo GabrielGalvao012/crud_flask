@@ -3,6 +3,7 @@ from cliente import db, app
 from models import Cliente
 from definicoes import recupera_imagem, deletar_imagem, FormularioCliente
 import time
+from views_servicos import *
 
 @app.route('/')
 def listarClientes():
@@ -133,12 +134,24 @@ def excluir(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login'))
     
-    Cliente.query.filter_by(id_cliente=id).delete()
+    # 1. Verifique se o cliente tem serviços associados
+    from sqlalchemy import func
+    servicos_associados = db.session.query(func.count(Servico.id_servico)).filter_by(cliente_id=id).scalar()
     
-    deletar_imagem(id)
-    
-    db.session.commit()
-    
-    flash("Cliente excluido com sucesso")
+    # 2. Se houver serviços, retorne um aviso
+    if servicos_associados > 0:
+        flash("Não é possível excluir este cliente, pois ele possui serviços associados.", "error")
+        return redirect(url_for('listarClientes'))
+        
+    # 3. Se não houver serviços, prossiga com a exclusão
+    try:
+        Cliente.query.filter_by(id_cliente=id).delete()
+        deletar_imagem(id)
+        db.session.commit()
+        flash("Cliente excluído com sucesso!", "success")
+    except Exception as e:
+        db.session.rollback()
+        print(f"Ocorreu um erro ao tentar excluir: {e}")
+        flash("Ocorreu um erro ao tentar excluir o cliente.", "error")
     
     return redirect(url_for('listarClientes'))
